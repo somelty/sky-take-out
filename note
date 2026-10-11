@@ -1,0 +1,14 @@
+@Override
+protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+    //1.新建转换器
+    MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(); // SpringBoot 自动创建，只要引入 jackson 依赖就自带
+    //2.设置自定义ObjectMapper（JacksonObjectMapper）
+    converter.setObjectMapper(new JacksonObjectMapper());
+    //3.加到索引0：优先使用！
+    converters.add(0, converter);
+}
+SpringBoot 自动创建，只要引入 jackson 依赖就自带 MappingJackson2HttpMessageConverter
+默认行为：
+- 序列化`LocalDateTime`（`createTime/updateTime`）会转成数组[2026,10,12,...]，前端解析出就是像：20261011223751
+- 想要改日期，必须在每一个实体字段上加`@JsonFormat(XXXX)`注解
+这里用 MappingJackson2HttpMessageConverter 包装了我们自定义的 JacksonObjectMapper
