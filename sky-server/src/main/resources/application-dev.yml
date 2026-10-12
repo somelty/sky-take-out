@@ -6,3 +6,9 @@ sky:
     database: sky_take_out
     username: root
     password: 123456
+  alioss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    # 真实密钥请写入 application-local.yml（已被 .gitignore 忽略，不会提交）
+    access-key-id: 你的AccessKeyId
+    access-key-secret: 你的AccessKeySecret
+    bucket-name: yamin-tlias
