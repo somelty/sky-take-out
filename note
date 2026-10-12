@@ -12,3 +12,9 @@ SpringBoot 自动创建，只要引入 jackson 依赖就自带 MappingJackson2Ht
 - 序列化`LocalDateTime`（`createTime/updateTime`）会转成数组[2026,10,12,...]，前端解析出就是像：20261011223751
 - 想要改日期，必须在每一个实体字段上加`@JsonFormat(XXXX)`注解
 这里用 MappingJackson2HttpMessageConverter 包装了我们自定义的 JacksonObjectMapper
+
+
+AOP
+- 自定义 AutoFill 注解，用于标识需要自动填充公共字段的方法
+- 自定义切面类，统一拦截标注了 AutoFill 注解的方法，通过反射为公共字段赋值
+- 在 XXXMapper 中加入 AutoFill 注解
